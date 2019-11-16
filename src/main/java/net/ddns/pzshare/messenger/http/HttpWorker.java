@@ -7,6 +7,7 @@ import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.ddns.pzshare.messenger.StartException;
 import net.ddns.pzshare.messenger.Worker;
 import net.ddns.pzshare.messenger.SendException;
 import org.apache.logging.log4j.LogManager;
@@ -46,7 +47,7 @@ public class HttpWorker extends Worker {
     }
 
     @Override
-    public void start() {
+    public void start() throws StartException{
         try {
             server = HttpServer.create();
             server.bind(config.getSocket(), 0);
@@ -94,11 +95,11 @@ public class HttpWorker extends Worker {
                 os.close();
             });
 
-            log.info("Starting http server on port: " + config.getSocket().getPort());
+            log.info("Starting new http server on port: " + config.getSocket().getPort());
 
             server.start();
         }catch (IOException ex){
-            log.error("Failed to create httpServer " + ex.getMessage());
+            throw new StartException("Failed to start httpServer " + ex.getMessage());
         }
     }
 
