@@ -1,4 +1,4 @@
-package net.ddns.pzshare.messanger;
+package net.ddns.pzshare.messenger;
 
 import org.springframework.context.annotation.Scope;
 

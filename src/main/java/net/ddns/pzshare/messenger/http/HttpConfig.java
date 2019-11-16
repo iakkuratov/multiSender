@@ -1,6 +1,6 @@
-package net.ddns.pzshare.messanger.http;
+package net.ddns.pzshare.messenger.http;
 
-import net.ddns.pzshare.messanger.WorkerCfg;
+import net.ddns.pzshare.messenger.WorkerCfg;
 
 import java.net.InetSocketAddress;
 

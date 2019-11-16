@@ -1,4 +1,4 @@
-package net.ddns.pzshare.messanger.tg;
+package net.ddns.pzshare.messenger.tg;
 
 public interface TgConsumer {
     void toSubscribers(String id, String text);

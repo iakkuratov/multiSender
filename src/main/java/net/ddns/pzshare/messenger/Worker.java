@@ -1,4 +1,4 @@
-package net.ddns.pzshare.messanger;
+package net.ddns.pzshare.messenger;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -6,10 +6,11 @@ import org.apache.logging.log4j.Logger;
 import java.util.HashSet;
 import java.util.Set;
 
+@SuppressWarnings("WeakerAccess")
 public abstract class Worker {
-    Set<Worker> receivers = new HashSet<>();
+    private final Set<Worker> receivers = new HashSet<>();
 
-    private static Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger();
 
     public abstract void start();
 
@@ -26,9 +27,9 @@ public abstract class Worker {
                 log.error("Failed to send message: " + ex.getMessage());
             }
         }
-    };
+    }
 
     public void subscribe(Worker receiver){
         receivers.add(receiver);
-    };
+    }
 }

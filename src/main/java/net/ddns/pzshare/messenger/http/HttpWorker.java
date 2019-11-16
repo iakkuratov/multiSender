@@ -1,16 +1,14 @@
-package net.ddns.pzshare.messanger.http;
+package net.ddns.pzshare.messenger.http;
 
 import com.sun.net.httpserver.HttpServer;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.text.ParseException;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
-import net.ddns.pzshare.messanger.Worker;
-import net.ddns.pzshare.messanger.SendException;
+import net.ddns.pzshare.messenger.Worker;
+import net.ddns.pzshare.messenger.SendException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -20,7 +18,7 @@ public class HttpWorker extends Worker {
 
     private HttpServer server;
 
-    HttpConfig config;
+    final HttpConfig config;
 
     public HttpWorker(HttpConfig config){
         this.config = config;
@@ -106,7 +104,7 @@ public class HttpWorker extends Worker {
 
     @Override
     public void send(String userId, String msg) throws SendException {
-        /** NO-OP **/
+        /* NO-OP **/
         throw new SendException("Unsupported sender got send request with text: " + msg);
     }
 }
