@@ -1,0 +1,9 @@
+*.iml
+.attach_pid*
+.idea/*
+target
+*.log
+*.jar
+*.war
+hs_err_pid*
+application.xml
