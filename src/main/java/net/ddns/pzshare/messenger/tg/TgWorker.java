@@ -1,6 +1,7 @@
 package net.ddns.pzshare.messenger.tg;
 
 import net.ddns.pzshare.messenger.SendException;
+import net.ddns.pzshare.messenger.StartException;
 import net.ddns.pzshare.messenger.Worker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,20 +21,27 @@ public class TgWorker extends Worker implements TgConsumer {
     }
 
     @Override
-    public void start() {
+    public void start() throws StartException {
         if (telegramBotsApi == null){
             ApiContextInitializer.init();
 
             telegramBotsApi = new TelegramBotsApi();
         }
         try {
+            log.info("Starting new bot");
+
             telegramBotsApi.registerBot(bot);
 
-            log.info("Bot successfully registered.");
-
         } catch (TelegramApiRequestException ex) {
-            log.error("Failed to start bot.", ex);
+            throw new StartException("Failed to start bot" + ex.getMessage());
         }
+    }
+
+    @Override
+    public void stop() {
+        log.info("Stopping bot");
+
+        bot.onClosing();
     }
 
     @Override

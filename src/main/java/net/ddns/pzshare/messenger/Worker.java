@@ -12,7 +12,9 @@ public abstract class Worker {
 
     private static final Logger log = LogManager.getLogger();
 
-    public abstract void start();
+    public abstract void start() throws StartException;
+
+    public abstract void stop();
 
     public abstract void send(String userId, String msg) throws SendException;
 
